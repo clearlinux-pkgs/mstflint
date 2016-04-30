@@ -1,0 +1,13 @@
+--- mstflint-4.3.0/configure~	2016-04-19 14:26:07.000000000 +0000
++++ mstflint-4.3.0/configure	2016-04-30 13:33:54.137901203 +0000
+@@ -15269,8 +15269,8 @@
+ 
+ fi
+ 
+-CFLAGS="$CFLAGS -Werror -DMST_UL"
+-CXXFLAGS="$CXXFLAGS -Werror -DMST_UL"
++CFLAGS="$CFLAGS  -DMST_UL"
++CXXFLAGS="$CXXFLAGS -DMST_UL"
+ 
+ ac_config_files="$ac_config_files mstflint.spec"
+ 
