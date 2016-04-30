@@ -4,7 +4,7 @@
 #
 Name     : mstflint
 Version  : 4.3.0
-Release  : 6
+Release  : 7
 URL      : https://www.openfabrics.org/downloads/mstflint/mstflint-4.3.0.tar.gz
 Source0  : https://www.openfabrics.org/downloads/mstflint/mstflint-4.3.0.tar.gz
 Summary  : Mellanox firmware burning application
