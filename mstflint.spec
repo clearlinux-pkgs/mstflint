@@ -4,7 +4,7 @@
 #
 Name     : mstflint
 Version  : 4.4.0
-Release  : 8
+Release  : 9
 URL      : https://www.openfabrics.org/downloads/mstflint/mstflint-4.4.0.tar.gz
 Source0  : https://www.openfabrics.org/downloads/mstflint/mstflint-4.4.0.tar.gz
 Summary  : Mellanox firmware burning application
@@ -63,6 +63,8 @@ doc components for the mstflint package.
 %patch1 -p1
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484605134
 export CFLAGS="$CFLAGS -std=gnu++98 "
 export FCFLAGS="$CFLAGS -std=gnu++98 "
 export FFLAGS="$CFLAGS -std=gnu++98 "
@@ -71,12 +73,14 @@ export CXXFLAGS="$CXXFLAGS -std=gnu++98 "
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1484605134
 rm -rf %{buildroot}
 %make_install
 
