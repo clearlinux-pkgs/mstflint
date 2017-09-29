@@ -4,7 +4,7 @@
 #
 Name     : mstflint
 Version  : 4.7.0
-Release  : 12
+Release  : 13
 URL      : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source0  : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Summary  : Mellanox firmware burning application
@@ -68,8 +68,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1506717498
-%configure --disable-static --disable-inband
+export SOURCE_DATE_EPOCH=1506718309
+%configure --disable-static --disable-inband --enable-xml2 --enable-openssl
 make V=1  %{?_smp_mflags}
 
 %check
@@ -80,7 +80,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1506717498
+export SOURCE_DATE_EPOCH=1506718309
 rm -rf %{buildroot}
 %make_install
 
