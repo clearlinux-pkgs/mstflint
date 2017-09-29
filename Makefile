@@ -1,5 +1,5 @@
 PKG_NAME := mstflint
-URL := https://www.openfabrics.org/downloads/mstflint/mstflint-4.4.0.tar.gz
+URL := https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 
 
 include ../common/Makefile.common
