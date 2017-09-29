@@ -1,3 +1,5 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 rdma-core-dev
+openssl-dev
+libxml2-dev
