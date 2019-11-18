@@ -4,7 +4,7 @@
 #
 Name     : mstflint
 Version  : 4.7.0.1
-Release  : 18
+Release  : 19
 URL      : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source0  : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Summary  : Mellanox firmware burning application
@@ -19,7 +19,7 @@ BuildRequires : openssl-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : rdma-core-dev
 Patch1: build.patch
-Patch2: build-Update-internal-copy-of-SQLite-from-3.13-to-3.28.patch
+Patch2: build-Update-internal-copy-of-SQLite-from-3.13-to-3.30.1.patch
 
 %description
 This package contains firmware update tool, vpd dump and register dump tools
@@ -73,6 +73,7 @@ man components for the mstflint package.
 
 %prep
 %setup -q -n mstflint-4.7.0
+cd %{_builddir}/mstflint-4.7.0
 %patch1 -p1
 %patch2 -p1
 
@@ -80,8 +81,8 @@ man components for the mstflint package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559952749
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1574113412
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -94,18 +95,18 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1559952749
+export SOURCE_DATE_EPOCH=1574113412
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/mstflint
-cp COPYING %{buildroot}/usr/share/package-licenses/mstflint/COPYING
-cp LICENSE %{buildroot}/usr/share/package-licenses/mstflint/LICENSE
+cp %{_builddir}/mstflint-4.7.0/COPYING %{buildroot}/usr/share/package-licenses/mstflint/7239f8545556f33cc29b4358f25c348be0db720a
+cp %{_builddir}/mstflint-4.7.0/LICENSE %{buildroot}/usr/share/package-licenses/mstflint/459bf85b304abbf56007b259192e028cae613d4c
 %make_install
 
 %files
@@ -145,8 +146,8 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/mstflint/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/mstflint/COPYING
-/usr/share/package-licenses/mstflint/LICENSE
+/usr/share/package-licenses/mstflint/459bf85b304abbf56007b259192e028cae613d4c
+/usr/share/package-licenses/mstflint/7239f8545556f33cc29b4358f25c348be0db720a
 
 %files man
 %defattr(0644,root,root,0755)
