@@ -4,9 +4,10 @@
 #
 Name     : mstflint
 Version  : 4.7.0.1
-Release  : 21
+Release  : 22
 URL      : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source0  : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
+Source1  : https://sqlite.org/2020/sqlite-autoconf-3310100.tar.gz
 Summary  : Mellanox firmware burning application
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -19,7 +20,6 @@ BuildRequires : openssl-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : rdma-core-dev
 Patch1: build.patch
-Patch2: build-Update-internal-copy-of-SQLite-from-3.13-to-3.30.1.patch
 
 %description
 This package contains firmware update tool, vpd dump and register dump tools
@@ -73,16 +73,22 @@ man components for the mstflint package.
 
 %prep
 %setup -q -n mstflint-4.7.0
+cd %{_builddir}
+tar xf %{_sourcedir}/sqlite-autoconf-3310100.tar.gz
 cd %{_builddir}/mstflint-4.7.0
+mkdir -p sqlite/
+cp -r %{_builddir}/sqlite-autoconf-3310100/* %{_builddir}/mstflint-4.7.0/sqlite/
 %patch1 -p1
-%patch2 -p1
 
 %build
+## build_prepend content
+cp sqlite/sqlite3.{h,c} ext_libs/sqlite/
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574113412
+export SOURCE_DATE_EPOCH=1585696735
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -102,7 +108,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1574113412
+export SOURCE_DATE_EPOCH=1585696735
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/mstflint
 cp %{_builddir}/mstflint-4.7.0/COPYING %{buildroot}/usr/share/package-licenses/mstflint/7239f8545556f33cc29b4358f25c348be0db720a

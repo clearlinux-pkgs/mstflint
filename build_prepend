@@ -1,0 +1,1 @@
+cp sqlite/sqlite3.{h,c} ext_libs/sqlite/
