@@ -4,10 +4,10 @@
 #
 Name     : mstflint
 Version  : 4.7.0.1
-Release  : 22
+Release  : 23
 URL      : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source0  : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
-Source1  : https://sqlite.org/2020/sqlite-autoconf-3310100.tar.gz
+Source1  : https://sqlite.org/2020/sqlite-autoconf-3320100.tar.gz
 Summary  : Mellanox firmware burning application
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -74,10 +74,10 @@ man components for the mstflint package.
 %prep
 %setup -q -n mstflint-4.7.0
 cd %{_builddir}
-tar xf %{_sourcedir}/sqlite-autoconf-3310100.tar.gz
+tar xf %{_sourcedir}/sqlite-autoconf-3320100.tar.gz
 cd %{_builddir}/mstflint-4.7.0
 mkdir -p sqlite/
-cp -r %{_builddir}/sqlite-autoconf-3310100/* %{_builddir}/mstflint-4.7.0/sqlite/
+cp -r %{_builddir}/sqlite-autoconf-3320100/* %{_builddir}/mstflint-4.7.0/sqlite/
 %patch1 -p1
 
 %build
@@ -88,14 +88,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585696735
+export SOURCE_DATE_EPOCH=1590601641
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -std=gnu++98"
 %configure --disable-static --disable-inband --enable-xml2 --enable-openssl
 make  %{?_smp_mflags}
@@ -108,7 +108,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1585696735
+export SOURCE_DATE_EPOCH=1590601641
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/mstflint
 cp %{_builddir}/mstflint-4.7.0/COPYING %{buildroot}/usr/share/package-licenses/mstflint/7239f8545556f33cc29b4358f25c348be0db720a
