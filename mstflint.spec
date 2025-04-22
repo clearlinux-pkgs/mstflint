@@ -4,7 +4,7 @@
 #
 Name     : mstflint
 Version  : 4.7.0.1
-Release  : 24
+Release  : 25
 URL      : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source0  : https://github.com/Mellanox/mstflint/releases/download/v4.7.0-1/mstflint-4.7.0.tar.gz
 Source1  : https://sqlite.org/2020/sqlite-autoconf-3320100.tar.gz
